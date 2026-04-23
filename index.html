@@ -3,112 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Retass BLUD | Dinkes Paser</title>
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Sistem Informasi Realisasi & Rekonsiliasi Anggaran BLUD - Dinas Kesehatan Kab. Paser">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#1e3a8a">
-
-    <meta property="og:title" content="Retass BLUD Dinkes Paser">
-    <meta property="og:description" content="Sistem Manajemen Anggaran BLUD Terintegrasi.">
-    <meta property="og:image" content="https://st2.depositphotos.com/1320097/7269/v/450/depositphotos_72699673-stock-illustration-heartbeat-icon.jpg">
     
-    <link rel="icon" href="https://st2.depositphotos.com/1320097/7269/v/450/depositphotos_72699673-stock-illustration-heartbeat-icon.jpg">
-    <link rel="apple-touch-icon" href="https://st2.depositphotos.com/1320097/7269/v/450/depositphotos_72699673-stock-illustration-heartbeat-icon.jpg">
-
     <style>
-        /* CSS Reset & Layout */
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
             overflow: hidden;
             background-color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
-
-        /* Iframe Fullscreen */
+        /* Ini rahasianya biar nggak buka link baru */
         iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
             position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
-        }
-
-        /* Loading Spinner */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 5;
-            transition: opacity 0.5s ease;
-        }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #1e3a8a; /* Biru Dinkes */
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        .loading-text {
-            margin-top: 15px;
-            color: #1e3a8a;
-            font-weight: bold;
-            font-size: 16px;
-            letter-spacing: 0.5px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+            z-index: 999;
         }
     </style>
 </head>
 <body>
 
-    <div id="loader">
-        <div class="spinner"></div>
-        <div class="loading-text">Memuat Retass BLUD...</div>
-    </div>
-
     <iframe 
-        id="appFrame"
-        title="Retass BLUD Dinkes Paser"
         src="https://script.google.com/macros/s/AKfycbzrsc_WxwcMa8b9N7_0Em43LKXEhmkzVg2i7uZlihb3-7SCaUNQnwhPLikqNWCv2xHz/exec"
-        allowfullscreen="true"
-        allow="camera; microphone; geolocation; autoplay; fullscreen"
-        onload="hideLoader()">
+        allowfullscreen="true">
     </iframe>
-
-    <script>
-        function hideLoader() {
-            const loader = document.getElementById('loader');
-            if(loader) {
-                // Efek memudar halus
-                loader.style.opacity = '0';
-                setTimeout(function() {
-                    loader.style.display = 'none';
-                }, 500);
-            }
-        }
-    </script>
 
 </body>
 </html>
