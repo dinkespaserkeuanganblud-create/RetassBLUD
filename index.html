@@ -12,21 +12,47 @@
             overflow: hidden;
             background-color: #ffffff;
         }
-        /* Ini rahasianya biar nggak buka link baru */
         iframe {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
             border: none;
-            z-index: 999;
+            z-index: 10;
         }
+        /* Style Loading */
+        #loader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+        }
+        .spinner {
+            width: 40px; height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1e3a8a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
+    <div id="loader">
+        <div class="spinner"></div>
+        <div style="margin-top:15px; color:#1e3a8a; font-family:sans-serif;">Memuat Retass BLUD...</div>
+    </div>
+
     <iframe 
-        src="https://script.google.com/macros/s/AKfycbzrsc_WxwcMa8b9N7_0Em43LKXEhmkzVg2i7uZlihb3-7SCaUNQnwhPLikqNWCv2xHz/exec"
-        allowfullscreen="true">
+        id="appFrame"
+        src="https://script.google.com/macros/s/AKfycbzch-ZTdL4qaHONZ8uCUO4hIlXrNc3rdoLyj68ppskO6c2A8t9mhYQPE3WbcBYsWm8r/exec"
+        allowfullscreen="true"
+        onload="document.getElementById('loader').style.display='none';">
     </iframe>
 
 </body>
