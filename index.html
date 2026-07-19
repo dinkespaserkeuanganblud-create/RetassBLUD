@@ -1,3 +1,4 @@
+sudah terselesaikan
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -19,6 +20,7 @@
             overflow-x: hidden;
         }
 
+        /* --- HALAMAN LANDING PAGE --- */
         #landingPage {
             width: 100%;
             min-height: 100vh;
@@ -28,7 +30,10 @@
         }
 
         .hero-section {
-            background: linear-gradient(135deg, #2b6cb0 0%, #4299e1 100%);
+            position: relative;
+            /* Background Gambar Keuangan */
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), 
+                        url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1920&q=80') center/cover;
             height: 400px;
             display: flex;
             align-items: center;
@@ -39,17 +44,18 @@
             padding: 0 20px;
         }
 
+        /* ICON KANTONG DOLAR EMAS */
         .hero-icon {
-            font-size: 90px;
-            color: rgba(255,255,255,0.9);
+            font-size: 100px;
+            color: #fbbf24; /* Warna Kuning Emas */
             margin-bottom: 20px;
-            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
             animation: bounce 3s infinite ease-in-out;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-10px); }
         }
 
         .hero-section h1 {
@@ -57,13 +63,12 @@
             font-weight: 700;
             margin: 0;
             letter-spacing: 3px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.15);
         }
 
         .hero-line {
             width: 100px;
-            height: 4px;
-            background-color: rgba(255,255,255,0.6);
+            height: 5px;
+            background-color: #fbbf24;
             margin-top: 15px;
             border-radius: 10px;
         }
@@ -83,8 +88,8 @@
         }
 
         .data-section {
-            background-color: #e9eff5;
-            color: #1e293b;
+            background-color: #33474a; /* Warna Teal Gelap Elegan */
+            color: white;
             padding: 60px 20px;
         }
 
@@ -96,9 +101,8 @@
         .data-content h3 {
             font-size: 1.8rem;
             margin-bottom: 25px;
-            border-bottom: 2px solid rgba(0,0,0,0.05);
+            border-bottom: 2px solid rgba(255,255,255,0.1);
             padding-bottom: 10px;
-            color: #2b6cb0;
         }
 
         .data-content ul {
@@ -111,15 +115,12 @@
             font-size: 1.2rem;
             display: flex;
             align-items: center;
-            color: #2d3748;
         }
 
         .data-content li i {
-            color: #4299e1;
+            color: #fbbf24;
             margin-right: 15px;
             font-size: 1.4rem;
-            width: 24px;
-            text-align: center;
         }
 
         .action-section {
@@ -129,36 +130,69 @@
         }
 
         .btn-masuk {
-            background: #2b6cb0;
-            color: white;
+            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+            color: #000;
             border: none;
             padding: 18px 50px;
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            font-weight: 800;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 6px 15px rgba(43,108,176,0.25);
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(217, 119, 6, 0.3);
+            transition: 0.3s;
             font-family: 'Lexend', sans-serif;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
         }
 
         .btn-masuk:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.05);
-            box-shadow: 0 10px 20px rgba(43,108,176,0.35);
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(217, 119, 6, 0.4);
         }
 
-        .footer-note {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.85rem;
-            color: #718096;
+        /* --- IFRAME CONTAINER (PERBAIKAN HP/IPHONE) --- */
+        #appContainer {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0; /* Kunci full screen */
+            width: 100%; 
+            height: 100vh;
+            z-index: 100;
+            background-color: #f8fafc;
+            overflow: hidden;
+            -webkit-overflow-scrolling: touch; /* Anti-ngadat di iOS */
         }
 
+        #appContainer iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+
+        #loader {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+        }
+
+        .spinner {
+            width: 60px; height: 60px;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #d97706;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Penyesuaian Responsif untuk HP */
         @media (max-width: 768px) {
             .hero-section h1 { font-size: 2.2rem; }
             .info-section, .data-section { padding: 40px 20px; }
@@ -195,17 +229,37 @@
         </div>
 
         <div class="action-section">
-            <!-- Ubah tombol di action-section Anda -->
-                <a class="btn-masuk" href="https://script.google.com/macros/s/AKfycbyDdnVuHaF6SUbY6AnGMqnPNUtTwhPs9AqAzCzOoOSETSgyctDpYG_HL907_MzK7KXOlQ/exec" target="_blank">
-                    <i class="fas fa-rocket"></i> MASUK KE SISTEM
-                </a>
-            <p style="color:#718096; margin-top:15px;">Anda akan diarahkan ke aplikasi Retass BLUD</p>
-        </div>
-
-        <div class="footer-note">
-            &copy; Dinas Kesehatan Kabupaten Paser
+            <button class="btn-masuk" onclick="bukaAplikasi()">
+                MASUK KE SISTEM <i class="fas fa-arrow-right" style="margin-left:10px"></i>
+            </button>
         </div>
     </div>
 
+    <div id="appContainer">
+        <div id="loader">
+            <div class="spinner"></div>
+            <div style="margin-top:20px; font-weight:bold; color:#d97706;">MENYIAPKAN DATA ANGGARAN...</div>
+        </div>
+        <iframe id="appFrame" src="" allowfullscreen="true"></iframe>
+    </div>
+
+    <script>
+        function bukaAplikasi() {
+            // Sembunyikan Landing Page
+            document.getElementById('landingPage').style.display = 'none';
+            // Munculkan Container Iframe
+            document.getElementById('appContainer').style.display = 'block';
+            
+            var iframe = document.getElementById('appFrame');
+            
+            // Masukkan Link Google Apps Script Bosku
+            iframe.src = "https://script.google.com/a/~/macros/s/AKfycbzDbDZ4cmRsgzQYvuwbgOU4oFQ_VPplNFh3dQR3zK-MQzKP_h87fLZPrV_zhRkTyQOelQ/exec";
+            
+            // Matikan loading saat aplikasi selesai dimuat
+            iframe.onload = function() {
+                document.getElementById('loader').style.display = 'none';
+            };
+        }
+    </script>
 </body>
 </html>
