@@ -11,217 +11,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        body, html {
-            margin: 0; padding: 0;
-            width: 100%; height: 100%;
-            font-family: 'Lexend', sans-serif;
-            background-color: #f8fafc;
-            overflow-x: hidden;
-        }
-
-        #landingPage {
-            width: 100%;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            transition: opacity 0.5s ease;
-        }
-
-        .hero-section {
-            background: linear-gradient(135deg, #2b6cb0 0%, #4299e1 100%);
-            height: 380px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            color: white;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .hero-icon {
-            font-size: 85px;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 15px;
-            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.2));
-            animation: bounce 3s infinite ease-in-out;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .hero-section h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin: 0;
-            letter-spacing: 3px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.15);
-        }
-
-        .hero-line {
-            width: 90px;
-            height: 4px;
-            background-color: rgba(255,255,255,0.6);
-            margin-top: 15px;
-            border-radius: 10px;
-        }
-
-        .info-section {
-            background-color: #ffffff;
-            padding: 50px 20px;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-            color: #334155;
-            font-size: 1.05rem;
-            text-align: justify;
-        }
-
-        .data-section {
-            background-color: #e9eff5;
-            color: #1e293b;
-            padding: 50px 20px;
-        }
-
-        .data-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .data-content h3 {
-            font-size: 1.7rem;
-            margin-bottom: 20px;
-            border-bottom: 2px solid rgba(0,0,0,0.05);
-            padding-bottom: 10px;
-            color: #2b6cb0;
-        }
-
-        .data-content ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .data-content li {
-            margin-bottom: 12px;
-            font-size: 1.15rem;
-            display: flex;
-            align-items: center;
-            color: #2d3748;
-        }
-
-        .data-content li i {
-            color: #4299e1;
-            margin-right: 15px;
-            font-size: 1.4rem;
-            width: 24px;
-            text-align: center;
-        }
-
-        .action-section {
-            padding: 50px 20px;
-            text-align: center;
-            background-color: #f8fafc;
-        }
-
-        .action-section h3 {
-            color: #2d3748;
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
-
-        .button-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .btn-masuk {
-            background: #2b6cb0;
-            color: white;
-            border: none;
-            padding: 16px 36px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 6px 15px rgba(43,108,176,0.25);
-            transition: all 0.3s ease;
-            font-family: 'Lexend', sans-serif;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            min-width: 190px;
-            justify-content: center;
-        }
-
-        .btn-masuk:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.05);
-            box-shadow: 0 10px 20px rgba(43,108,176,0.35);
-        }
-
-        .btn-masuk i {
-            font-size: 1.1rem;
-        }
-
-        /* Warna khusus untuk tombol tertentu */
-        .btn-dinkes { background: #1e40af; } /* Biru lebih tua */
-        .btn-umum { background: #475569; } /* Abu-abu gelap */
-        .btn-lama { background: #64748b; } /* Sedikit lebih muda dari umum */
-
-        #appContainer {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            width: 100%; 
-            height: 100vh;
-            z-index: 100;
-            background-color: #f8fafc;
-            overflow: hidden;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        #appContainer iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-
-        #loader {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: #ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 5;
-        }
-
-        .spinner {
-            width: 55px; height: 55px;
-            border: 6px solid #f3f3f3;
-            border-top: 6px solid #2b6cb0;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        @media (max-width: 768px) {
-            .hero-section h1 { font-size: 2.2rem; }
-            .info-section, .data-section { padding: 40px 20px; }
-            .container, .data-content { font-size: 0.95rem; }
-            .hero-icon { font-size: 70px; }
-            .btn-masuk { font-size: 0.95rem; padding: 14px 28px; min-width: 160px; }
+        body, html { margin:0; padding:0; width:100%; height:100%; font-family:'Lexend',sans-serif; background-color:#f8fafc; overflow-x:hidden; }
+        #landingPage { width:100%; min-height:100vh; display:flex; flex-direction:column; }
+        .hero-section { background: linear-gradient(135deg, #2b6cb0 0%, #4299e1 100%); height:380px; display:flex; align-items:center; justify-content:center; flex-direction:column; color:white; text-align:center; padding:0 20px; }
+        .hero-icon { font-size:85px; color:rgba(255,255,255,0.9); margin-bottom:15px; filter:drop-shadow(0 8px 12px rgba(0,0,0,0.2)); animation:bounce 3s infinite ease-in-out; }
+        @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+        .hero-section h1 { font-size:3rem; font-weight:700; margin:0; letter-spacing:3px; text-shadow:2px 2px 8px rgba(0,0,0,0.15); }
+        .hero-line { width:90px; height:4px; background-color:rgba(255,255,255,0.6); margin-top:15px; border-radius:10px; }
+        .info-section { background-color:#ffffff; padding:50px 20px; }
+        .container { max-width:800px; margin:0 auto; line-height:1.8; color:#334155; font-size:1.05rem; text-align:justify; }
+        .data-section { background-color:#e9eff5; color:#1e293b; padding:50px 20px; }
+        .data-content { max-width:800px; margin:0 auto; }
+        .data-content h3 { font-size:1.7rem; margin-bottom:20px; border-bottom:2px solid rgba(0,0,0,0.05); padding-bottom:10px; color:#2b6cb0; }
+        .data-content ul { list-style:none; padding:0; }
+        .data-content li { margin-bottom:12px; font-size:1.15rem; display:flex; align-items:center; color:#2d3748; }
+        .data-content li i { color:#4299e1; margin-right:15px; font-size:1.4rem; width:24px; text-align:center; }
+        .action-section { padding:50px 20px; text-align:center; background-color:#f8fafc; }
+        .action-section h3 { color:#2d3748; margin-bottom:25px; font-weight:600; }
+        .button-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:15px; }
+        .btn-masuk { background:#2b6cb0; color:white; border:none; padding:16px 36px; font-size:1rem; font-weight:700; border-radius:50px; cursor:pointer; box-shadow:0 6px 15px rgba(43,108,176,0.25); transition:all 0.3s ease; font-family:'Lexend',sans-serif; display:inline-flex; align-items:center; gap:10px; min-width:190px; justify-content:center; }
+        .btn-masuk:hover { transform:translateY(-2px); filter:brightness(1.05); box-shadow:0 10px 20px rgba(43,108,176,0.35); }
+        .btn-masuk i { font-size:1.1rem; }
+        .btn-dinkes { background:#1e40af; }
+        .btn-umum { background:#475569; }
+        .btn-lama { background:#64748b; }
+        #appContainer { display:none; position:fixed; top:0; left:0; right:0; bottom:0; width:100%; height:100vh; z-index:100; background-color:#f8fafc; overflow:hidden; -webkit-overflow-scrolling:touch; }
+        #appContainer iframe { width:100%; height:100%; border:none; display:block; }
+        #loader { position:absolute; top:0; left:0; width:100%; height:100%; background:#ffffff; display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:5; }
+        .spinner { width:55px; height:55px; border:6px solid #f3f3f3; border-top:6px solid #2b6cb0; border-radius:50%; animation:spin 1s linear infinite; }
+        @keyframes spin { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
+        @media (max-width:768px) {
+            .hero-section h1 { font-size:2.2rem; }
+            .info-section, .data-section { padding:40px 20px; }
+            .container, .data-content { font-size:0.95rem; }
+            .hero-icon { font-size:70px; }
+            .btn-masuk { font-size:0.95rem; padding:14px 28px; min-width:160px; }
         }
     </style>
 </head>
@@ -233,13 +57,11 @@
             <h1>RETASS BLUD</h1>
             <div class="hero-line"></div>
         </div>
-
         <div class="info-section">
             <div class="container">
-                <b>RETASS BLUD</b> adalah Rekonsiliasi BLUD Dua Tahap berbasis spreadsheet merupakan mekanisme rekonsiliasi yang dilakukan secara berjenjang dari Pejabat Keuangan BLUD kemudian selanjutnya oleh pengelola keuangan Dinas Kesehatan. Mekanisme ini dibuat untuk memudahkan dalam melakukan rekonsiliasi sehingga apabila ada kesalahan dapat segera diperbaiki tanpa harus mengambil dokumen yang salah ke Dinas Kesehatan, selain itu dokumen laporan keuangan BLUD terdokumentasi secara digital serta tersedianya laporan keuangan yang transparan dan akuntabel.
+                <b>RETASS BLUD</b> adalah Rekonsiliasi BLUD Dua Tahap berbasis spreadsheet...
             </div>
         </div>
-
         <div class="data-section">
             <div class="data-content">
                 <h3>Unit BLUD Kabupaten Paser</h3>
@@ -250,20 +72,19 @@
                 </ul>
             </div>
         </div>
-
         <div class="action-section">
             <h3>Pilih Aplikasi</h3>
             <div class="button-grid">
-                <button class="btn-masuk" onclick="bukaAplikasi('https://script.google.com/a/~/macros/s/AKfycbw1Do_FX186U4RLv01GBK-qllmhklSO-AZpki2PZsI1CUXbFPSOLDgB81Ez79D98EL0jw/exec')">
+                <button class="btn-masuk" onclick="bukaAplikasi('baru')">
                     <i class="fas fa-rocket"></i> Aplikasi Baru
                 </button>
-                <button class="btn-masuk btn-lama" onclick="bukaAplikasi('https://script.google.com/a/~/macros/s/AKfycbwwNFQceRp_aTS50UydWVqP194fssT4adaCT2CSgjHeZDpaycwyIfU8ek4DanEvWr0o/exec')">
+                <button class="btn-masuk btn-lama" onclick="bukaAplikasi('lama')">
                     <i class="fas fa-archive"></i> Aplikasi Lama
                 </button>
-                <button class="btn-masuk btn-dinkes" onclick="bukaAplikasi('https://script.google.com/macros/s/AKfycbyDdnVuHaF6SUbY6AnGMqnPNUt')">
+                <button class="btn-masuk btn-dinkes" onclick="bukaAplikasi('dinkes')">
                     <i class="fas fa-building"></i> Login Dinkes
                 </button>
-                <button class="btn-masuk btn-umum" onclick="bukaAplikasi('https://script.google.com/macros/s/AKfycbyDdnVuHaF6SUbY6An')">
+                <button class="btn-masuk btn-umum" onclick="bukaAplikasi('umum')">
                     <i class="fas fa-users"></i> Laman Umum
                 </button>
             </div>
@@ -279,37 +100,49 @@
     </div>
 
     <script>
-        const APP_STORAGE_KEY = 'retass_active_app_url';
+        // Ganti dengan URL asli masing-masing aplikasi
+        const APP_URLS = {
+            baru: 'https://script.google.com/a/~/macros/s/AKfycbw1Do_FX186U4RLv01GBK-qllmhklSO-AZpki2PZsI1CUXbFPSOLDgB81Ez79D98EL0jw/exec',
+            lama: 'https://script.google.com/a/~/macros/s/AKfycbwwNFQceRp_aTS50UydWVqP194fssT4adaCT2CSgjHeZDpaycwyIfU8ek4DanEvWr0o/exec',
+            dinkes: 'https://script.google.com/macros/s/AKfycbyDdnVuHaF6SUbY6AnGMqnPNUt',
+            umum: 'https://script.google.com/macros/s/AKfycbyDdnVuHaF6SUbY6An'
+        };
 
-        function bukaAplikasi(url) {
+        const APP_STORAGE_KEY = 'retass_active_app';
+
+        function bukaAplikasi(appKey) {
+            const url = APP_URLS[appKey];
+            if (!url) return;
+
+            // Update hash di URL (misal: #baru)
+            window.location.hash = appKey;
+
             document.getElementById('landingPage').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
             
             var iframe = document.getElementById('appFrame');
             iframe.src = url;
             
-            // Simpan URL yang sedang aktif
-            sessionStorage.setItem(APP_STORAGE_KEY, url);
+            sessionStorage.setItem(APP_STORAGE_KEY, appKey);
             
             iframe.onload = function() {
                 document.getElementById('loader').style.display = 'none';
             };
         }
 
-        // Saat halaman dimuat, periksa apakah ada sesi aplikasi yang sedang berjalan
-        (function() {
-            const savedUrl = sessionStorage.getItem(APP_STORAGE_KEY);
-            if (savedUrl) {
-                // Langsung tampilkan iframe tanpa landing page
-                document.getElementById('landingPage').style.display = 'none';
-                document.getElementById('appContainer').style.display = 'block';
-                var iframe = document.getElementById('appFrame');
-                iframe.src = savedUrl;
-                iframe.onload = function() {
-                    document.getElementById('loader').style.display = 'none';
-                };
+        function checkHash() {
+            const hash = window.location.hash.substring(1); // hilangkan tanda #
+            if (hash && APP_URLS[hash]) {
+                bukaAplikasi(hash);
+            } else {
+                const savedApp = sessionStorage.getItem(APP_STORAGE_KEY);
+                if (savedApp && APP_URLS[savedApp]) {
+                    bukaAplikasi(savedApp);
+                }
             }
-        })();
+        }
+
+        window.addEventListener('load', checkHash);
     </script>
 </body>
 </html>
