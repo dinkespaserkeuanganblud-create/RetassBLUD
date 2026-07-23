@@ -3,6 +3,8 @@ const urlsToCache = [
   './',
   './index.html',
   './manifest.json',
+  './icon-192.png',   // tambahkan
+  './icon-512.png'    // tambahkan
   // Jika nanti Anda memisahkan CSS/JS ke file eksternal, tambahkan di sini
   // './style.css',
   // './script.js'
