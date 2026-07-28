@@ -320,7 +320,6 @@
     </div>
 
     <script>
-        // Ganti dengan URL asli masing-masing aplikasi
         const APP_URLS = {
             baru: 'https://script.google.com/a/~/macros/s/AKfycbw6cYriLTX_8SXmZN3lvbXlwHQWiot-LmofYCUnghvyIP3Yr-JFEKVgeJFMnwDi3GI8/exec',
             lama: 'https://script.google.com/a/~/macros/s/AKfycbz5OUaEhETdgpkwd2-jg8yyFSvGAdLj7usopHGtaGlg9_sVApjDMiWSZYBimgsDRd8l/exec',
@@ -331,17 +330,20 @@
         const APP_STORAGE_KEY = 'retass_active_app';
 
         function bukaAplikasi(appKey) {
-            const url = APP_URLS[appKey];
-            if (!url) return;
+            const baseUrl = APP_URLS[appKey];
+            if (!baseUrl) return;
 
-            // Update hash di URL (misal: #baru)
+            // CACHE BUSTER: Tambahkan parameter waktu agar browser selalu me-load versi terbaru dari server, bukan dari cache
+            const urlDenganCacheBuster = baseUrl + "?v=" + new Date().getTime();
+
             window.location.hash = appKey;
 
             document.getElementById('landingPage').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
+            document.getElementById('loader').style.display = 'flex'; // Pastikan loader muncul
             
             var iframe = document.getElementById('appFrame');
-            iframe.src = url;
+            iframe.src = urlDenganCacheBuster;
             
             sessionStorage.setItem(APP_STORAGE_KEY, appKey);
             
@@ -355,20 +357,28 @@
             if (hash && APP_URLS[hash]) {
                 bukaAplikasi(hash);
             } else {
-                // Tidak ada hash → hapus sesi & tampilkan landing page
                 sessionStorage.removeItem(APP_STORAGE_KEY);
                 document.getElementById('landingPage').style.display = 'flex';
                 document.getElementById('appContainer').style.display = 'none';
+                document.getElementById('appFrame').src = ""; // Kosongkan iframe
             }
         }
 
         window.addEventListener('load', checkHash);
 
-        // Opsional: fungsi untuk kembali ke landing page dari dalam iframe
         function kembaliKeLanding() {
-            window.location.hash = '';
+            // Hapus hash dari URL tanpa me-reload halaman
+            history.pushState("", document.title, window.location.pathname + window.location.search);
             checkHash();
         }
+
+        // TANGKAP PESAN LOGOUT DARI IFRAME
+        window.addEventListener('message', function(event) {
+            // Pastikan pesan yang diterima adalah perintah logout
+            if (event.data === 'tutup_iframe_logout') {
+                kembaliKeLanding();
+            }
+        });
     </script>
 
     <!-- PWA Service Worker Registration -->
