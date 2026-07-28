@@ -10,10 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- PWA Meta Tags -->
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#A0AAB5">
-    
     <style>
         body, html {
             margin: 0; padding: 0;
@@ -46,7 +42,6 @@
             text-align: center;
         }
 
-        /* Pola halus di atas hero */
         .hero-section::before {
             content: "";
             position: absolute;
@@ -333,14 +328,14 @@
             const baseUrl = APP_URLS[appKey];
             if (!baseUrl) return;
 
-            // CACHE BUSTER: Tambahkan parameter waktu agar browser selalu me-load versi terbaru dari server, bukan dari cache
+            // Cache buster agar browser tidak mengambil data lama/tersimpan
             const urlDenganCacheBuster = baseUrl + "?v=" + new Date().getTime();
 
             window.location.hash = appKey;
 
             document.getElementById('landingPage').style.display = 'none';
             document.getElementById('appContainer').style.display = 'block';
-            document.getElementById('loader').style.display = 'flex'; // Pastikan loader muncul
+            document.getElementById('loader').style.display = 'flex';
             
             var iframe = document.getElementById('appFrame');
             iframe.src = urlDenganCacheBuster;
@@ -360,36 +355,23 @@
                 sessionStorage.removeItem(APP_STORAGE_KEY);
                 document.getElementById('landingPage').style.display = 'flex';
                 document.getElementById('appContainer').style.display = 'none';
-                document.getElementById('appFrame').src = ""; // Kosongkan iframe
+                document.getElementById('appFrame').src = "";
             }
         }
 
         window.addEventListener('load', checkHash);
 
         function kembaliKeLanding() {
-            // Hapus hash dari URL tanpa me-reload halaman
             history.pushState("", document.title, window.location.pathname + window.location.search);
             checkHash();
         }
 
-        // TANGKAP PESAN LOGOUT DARI IFRAME
+        // Menangkap sinyal logout dari dalam Iframe Google Apps Script
         window.addEventListener('message', function(event) {
-            // Pastikan pesan yang diterima adalah perintah logout
             if (event.data === 'tutup_iframe_logout') {
                 kembaliKeLanding();
             }
         });
-    </script>
-
-    <!-- PWA Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(reg => console.log('Service Worker registered:', reg.scope))
-                    .catch(err => console.log('Service Worker registration failed:', err));
-            });
-        }
     </script>
 </body>
 </html>
